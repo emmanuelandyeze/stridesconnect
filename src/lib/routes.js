@@ -22,12 +22,16 @@ export const PROFILE = '/protected/profile/:id';
 export const CREATE = '/protected/create';
 export const ANNOUNCE = '/protected/announce';
 export const COMMENT = '/protected/comments/:id';
-export const SINGLEARTICLE = '/protected/articles/:id';
+export const SINGLEARTICLE = '/articles/:id';
 
 export const router = createBrowserRouter([
 	{ path: ROOT, element: <Home /> },
 	{ path: LOGIN, element: <Login /> },
 	{ path: REGISTER, element: <Register /> },
+	{
+		path: SINGLEARTICLE,
+		element: <Article />,
+	},
 	{
 		path: PROTECTED,
 		element: <Layout />,
@@ -55,10 +59,6 @@ export const router = createBrowserRouter([
 			{
 				path: COMMENT,
 				element: <Comments />,
-			},
-			{
-				path: SINGLEARTICLE,
-				element: <Article />,
 			},
 		],
 	},

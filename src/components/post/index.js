@@ -51,7 +51,7 @@ export default function Post({ post }) {
 								alignItems: 'flex-start',
 							}}
 							as={Link}
-							to={`${PROTECTED}/articles/${id}`}
+							to={`/articles/${id}`}
 						>
 							<div>
 								<Text

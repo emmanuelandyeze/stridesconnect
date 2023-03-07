@@ -164,69 +164,104 @@ export default function Navbar() {
 						</DrawerBody>
 					</DrawerContent>
 				</Drawer>
-				<Flex
-					px="4"
-					w="full"
-					align="center"
-					maxW="1200px"
-					justifyContent="space-between"
-					alignItems="center"
-					style={{ zIndex: 1000 }}
-				>
-					<Link
-						color="purple.800"
-						href={DASHBOARD}
-						fontWeight="bold"
+				{user ? (
+					<Flex
+						px="4"
+						w="full"
+						align="center"
+						maxW="1200px"
+						justifyContent="space-between"
+						alignItems="center"
+						style={{ zIndex: 1000 }}
 					>
-						<Text
-							_hover={{ textDecoration: 'none' }}
-							style={{ fontSize: '1.5rem' }}
+						<Link
+							color="purple.800"
+							href={DASHBOARD}
+							fontWeight="bold"
 						>
-							Strides Connect
-						</Text>
-					</Link>
-
-					<div ml="auto">
-						<IconButton
-							aria-label="Search..."
-							icon={<SearchIcon />}
-						/>
-						<Menu>
-							<MenuButton
-								// ml="auto"
-								size={'sm'}
-								as={Button}
-								mr="5px"
-								backgroundColor={'white'}
-								_hover={{ backgroundColor: 'white' }}
-								_focus={{ backgroundColor: 'white' }}
+							<Text
+								_hover={{ textDecoration: 'none' }}
+								style={{ fontSize: '1.5rem' }}
+								fontFamily="Tilt Neon"
+								fontWeight={'bold'}
 							>
-								<Avatar user={user} size="md" />
-							</MenuButton>
-							<MenuList>
-								<MenuItem
-									onClick={() =>
-										navigate(
-											`${PROTECTED}/profile/${user?.id}`,
-										)
-									}
+								Strides Connect
+							</Text>
+						</Link>
+
+						<div ml="auto">
+							<IconButton
+								aria-label="Search..."
+								icon={<SearchIcon />}
+							/>
+							<Menu>
+								<MenuButton
+									// ml="auto"
+									size={'sm'}
+									as={Button}
+									mr="5px"
+									backgroundColor={'white'}
+									_hover={{ backgroundColor: 'white' }}
+									_focus={{ backgroundColor: 'white' }}
 								>
-									My Profile
-								</MenuItem>
-								<MenuItem>Privacy Policy</MenuItem>
-								<MenuItem>Report an issue</MenuItem>
-								<Divider />
-								<MenuItem
-									onClick={logout}
-									isLoading={isLoading}
-									color="red"
-								>
-									Logout
-								</MenuItem>
-							</MenuList>
-						</Menu>
-					</div>
-				</Flex>
+									<Avatar user={user} size="md" />
+								</MenuButton>
+								<MenuList>
+									<MenuItem
+										onClick={() =>
+											navigate(
+												`${PROTECTED}/profile/${user?.id}`,
+											)
+										}
+									>
+										My Profile
+									</MenuItem>
+									<MenuItem>Privacy Policy</MenuItem>
+									<MenuItem>Report an issue</MenuItem>
+									<Divider />
+									<MenuItem
+										onClick={logout}
+										isLoading={isLoading}
+										color="red"
+									>
+										Logout
+									</MenuItem>
+								</MenuList>
+							</Menu>
+						</div>
+					</Flex>
+				) : (
+					<Flex
+						px="4"
+						w="full"
+						align="center"
+						maxW="1200px"
+						justifyContent="space-between"
+						alignItems="center"
+						style={{ zIndex: 1000 }}
+					>
+						<Link
+							color="purple.800"
+							href={DASHBOARD}
+							fontWeight="bold"
+						>
+							<Text
+								_hover={{ textDecoration: 'none' }}
+								style={{ fontSize: '1.5rem' }}
+								fontFamily="Tilt Neon"
+								fontWeight={'bold'}
+							>
+								Strides Connect
+							</Text>
+						</Link>
+
+						<div ml="auto">
+							<Button as={Link} to="/login">
+								Login
+							</Button>
+						</div>
+					</Flex>
+				)}
 			</Flex>
 		);
 }
