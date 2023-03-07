@@ -36,9 +36,9 @@ export default function Post({ post }) {
 			{type === 'article' ? (
 				<Box p="0" pt={'1'} mx="auto" maxW="800px">
 					<Box
-						border={'2px solid'}
+						borderBottom={'2px solid'}
 						borderColor="gray.100"
-						borderRadius={'md'}
+						borderRadius={'none'}
 						style={{ padding: '.5rem' }}
 					>
 						<Header post={post} />
@@ -48,13 +48,17 @@ export default function Post({ post }) {
 								display: 'flex',
 								flexDirection: 'row',
 								justifyContent: 'space-between',
-								alignItems: 'center',
+								alignItems: 'flex-start',
 							}}
 							as={Link}
 							to={`${PROTECTED}/articles/${id}`}
 						>
 							<div>
-								<Text fontSize={'lg'} fontWeight={'bold'}>
+								<Text
+									fontSize={'lg'}
+									fontWeight={'bold'}
+									style={{ fontFamily: 'Tilt Neon' }}
+								>
 									{title}
 								</Text>
 							</div>
@@ -62,8 +66,8 @@ export default function Post({ post }) {
 							<Img
 								src={image}
 								style={{
-									height: '6rem',
-									width: '6rem',
+									height: '4rem',
+									width: '5rem',
 									objectFit: 'cover',
 									marginLeft: '1rem',
 									borderRadius: '5px',
@@ -92,6 +96,7 @@ export default function Post({ post }) {
 							>
 								{niche}
 							</Text>
+
 							<IconButton
 								size="lg"
 								variant="ghost"

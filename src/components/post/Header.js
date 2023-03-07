@@ -29,15 +29,15 @@ export default function Header({ post }) {
 						alignItems: 'center',
 					}}
 				>
-					<Avatar user={user} size="sm" />
+					<Avatar user={user} size="xs" />
 					<div>
-						<Text ml={'2'} fontSize={'sm'}>
+						<Text ml={'1'} fontSize={'xs'}>
 							{user.username}
 						</Text>
 					</div>
 				</Link>
 				<div>
-					<Text fontSize={'sm'}>
+					<Text fontSize={'xs'}>
 						{formatDistanceToNow(date)} ago
 					</Text>
 				</div>

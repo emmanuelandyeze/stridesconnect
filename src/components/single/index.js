@@ -22,10 +22,17 @@ export default function Article() {
 							fontWeight={'bold'}
 							style={{
 								paddingTop: '1rem',
-								paddingBottom: '1rem',
 							}}
 						>
 							{post.title}
+						</Text>
+						<Text
+							fontStyle={'italic'}
+							style={{
+								paddingBottom: '1rem',
+							}}
+						>
+							{post.description}
 						</Text>
 						<Img
 							align={'center'}
@@ -42,13 +49,10 @@ export default function Article() {
 							// height={'5rem'}
 							py={'1.5'}
 						>
-							<Text fontStyle={'italic'}>
-								{post.description}
-							</Text>
 							<Header post={post} />
 						</Box>
 						<Box pt={'1.5'}>
-							<Text>{parse(post.body)}</Text>
+							<Text pb="5">{parse(post.body)}</Text>
 						</Box>
 						<Box
 							style={{

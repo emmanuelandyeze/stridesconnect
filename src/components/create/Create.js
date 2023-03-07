@@ -291,6 +291,7 @@ function Create() {
 							Career development
 						</option>
 						<option value="Freelancing">Freelancing</option>
+						<option value="Finance">Finance</option>
 					</Select>
 				</div>
 
