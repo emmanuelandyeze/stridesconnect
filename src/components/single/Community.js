@@ -22,8 +22,30 @@ export default function Community() {
 		<div>
 			<Box align="left">
 				{/* <Post post={post} /> */}
-				<ChatList post={community} />
-				<NewChat post={community} />
+				<div
+					style={{
+						position: 'fixed',
+						backgroundColor: '#fff',
+						zIndex: 1000,
+						width: '100%',
+					}}
+				>
+					<Text
+						fontSize={'2xl'}
+						fontWeight="bold"
+						px={'4'}
+						py={'3'}
+						textAlign="flex-start"
+					>
+						{community.title}
+					</Text>
+				</div>
+
+				{/* <Text>{community.body}</Text> */}
+				<div style={{ paddingTop: '5rem' }}>
+					<ChatList post={community} />
+					<NewChat post={community} />
+				</div>
 			</Box>
 		</div>
 	);
