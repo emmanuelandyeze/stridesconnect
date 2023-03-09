@@ -1,4 +1,5 @@
 import {
+	Box,
 	Button,
 	Divider,
 	Flex,
@@ -24,6 +25,7 @@ import Avatar from './Avatar';
 import { format } from 'date-fns';
 import { useAuth } from 'hooks/auth';
 import { FaEdit } from 'react-icons/fa';
+import { BallTriangle } from 'react-loader-spinner';
 
 export default function Profile() {
 	const { id } = useParams();
@@ -46,7 +48,28 @@ export default function Profile() {
 	}
 
 	if (userLoading || postsLoading)
-		return <Text>Loading...</Text>;
+		return (
+			<div
+				style={{
+					display: 'flex',
+					flexDirection: 'row',
+					justifyContent: 'center',
+					alignItems: 'center',
+					height: '100vh',
+				}}
+			>
+				<BallTriangle
+					height={100}
+					width={100}
+					radius={5}
+					color="purple"
+					ariaLabel="ball-triangle-loading"
+					wrapperClass={{}}
+					wrapperStyle=""
+					visible={true}
+				/>
+			</div>
+		);
 
 	return (
 		<div>
@@ -93,7 +116,11 @@ export default function Profile() {
 				{postsLoading ? (
 					<Text>Posts Loading</Text>
 				) : (
-					<PostsList posts={posts} />
+					<>
+						<Box px={'4'}>
+							<PostsList posts={posts} />
+						</Box>
+					</>
 				)}
 			</Stack>
 			<Modal isOpen={isOpen} onClose={onClose}>

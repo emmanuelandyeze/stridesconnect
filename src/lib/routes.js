@@ -10,6 +10,7 @@ import Profile from 'components/profile';
 import Users from 'components/users/Users';
 import Article from 'components/single';
 import Home from 'components/Home/Home';
+import Community from 'components/single/Community';
 
 export const ROOT = '/';
 export const LOGIN = '/login';
@@ -22,6 +23,7 @@ export const PROFILE = '/protected/profile/:id';
 export const CREATE = '/protected/create';
 export const ANNOUNCE = '/protected/announce';
 export const COMMENT = '/protected/comments/:id';
+export const COMMUNITY = '/protected/community/:id';
 export const SINGLEARTICLE = '/articles/:id';
 
 export const router = createBrowserRouter([
@@ -59,6 +61,10 @@ export const router = createBrowserRouter([
 			{
 				path: COMMENT,
 				element: <Comments />,
+			},
+			{
+				path: COMMUNITY,
+				element: <Community />,
 			},
 		],
 	},

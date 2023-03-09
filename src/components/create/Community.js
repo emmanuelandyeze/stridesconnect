@@ -35,8 +35,54 @@ import { PROTECTED } from 'lib/routes';
 
 import { BsCameraFill } from 'react-icons/bs';
 
+const modules = {
+	toolbar: [
+		[{ header: '1' }, { header: '2' }, { font: [] }],
+		[{ size: [] }],
+		[
+			'bold',
+			'italic',
+			'underline',
+			'strike',
+			'blockquote',
+			'code-block',
+		],
+		[
+			{ list: 'ordered' },
+			{ list: 'bullet' },
+			{ indent: '-1' },
+			{ indent: '+1' },
+		],
+		['link', 'image', 'video'],
+		['clean'],
+	],
+	clipboard: {
+		matchVisual: false,
+	},
+};
 
-
+const formats = [
+	'font',
+	'size',
+	'bold',
+	'italic',
+	'underline',
+	'strike',
+	'color',
+	'background',
+	'script',
+	'header',
+	'blockquote',
+	'code-block',
+	'indent',
+	'list',
+	'direction',
+	'align',
+	'link',
+	'image',
+	'video',
+	'formula',
+];
 
 const options = {
 	replace: ({ attribs, children }) => {
@@ -62,7 +108,7 @@ const options = {
 	},
 };
 
-function Announcement() {
+function Community() {
 	const { user, isLoading: authLoading } = useAuth();
 	const filePickerRef = useRef(null);
 	const nicheRef = useRef(null);
@@ -114,11 +160,11 @@ function Announcement() {
 		).then(async (snapshot) => {
 			const downloadURL = await getDownloadURL(imageRef);
 			if (!downloadURL) {
-				await updateDoc(doc(db, 'posts', docRef.id), {
+				await updateDoc(doc(db, 'community', docRef.id), {
 					image: '',
 				});
 			} else {
-				await updateDoc(doc(db, 'posts', docRef.id), {
+				await updateDoc(doc(db, 'community', docRef.id), {
 					image: downloadURL,
 					id: docRef.id,
 				});
@@ -324,4 +370,4 @@ function Announcement() {
 	);
 }
 
-export default Announcement;
+export default Community;

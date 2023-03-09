@@ -16,8 +16,10 @@ import {
 	FaTrash,
 	FaRegCommentAlt,
 	FaCommentAlt,
+	FaShareAlt,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { ShareSocial } from 'react-share-social';
 
 export default function Actions({ post }) {
 	const { id, likes } = post;
@@ -75,17 +77,25 @@ export default function Actions({ post }) {
 					variant="ghost"
 					icon={<FaTrash />}
 					isRound
+					
 				/> */}
-				<IconButton
-					ml={'auto'}
-					size="lg"
-					// onClick={deletePost}
-					// isLoading={likeLoading || userLoading}
-					// colorScheme={'gray.200'}
-					variant="ghost"
-					icon={<BsBookmarkPlus />}
-					isRound
-				/>
+				<Flex>
+					<IconButton
+						ml={'auto'}
+						size="lg"
+						// onClick={deletePost}
+						// isLoading={likeLoading || userLoading}
+						// colorScheme={'gray.200'}
+						variant="ghost"
+						icon={<BsBookmarkPlus />}
+						isRound
+					/>
+					{/* <ShareSocial
+						title={'sharing happiness'}
+						url="url_to_share.com"
+						socialTypes={['facebook', 'twitter']}
+					/> */}
+				</Flex>
 			</Flex>
 		</div>
 	);

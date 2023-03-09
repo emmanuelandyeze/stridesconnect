@@ -1,11 +1,22 @@
 import {
 	Avatar,
 	Box,
+	Button,
 	IconButton,
 	Img,
+	Modal,
+	ModalBody,
+	ModalCloseButton,
+	ModalContent,
+	ModalFooter,
+	ModalHeader,
+	ModalOverlay,
+	SimpleGrid,
 	Text,
+	useDisclosure,
 } from '@chakra-ui/react';
 import { PROTECTED } from 'lib/routes';
+import { AiFillAudio } from 'react-icons/ai';
 import React from 'react';
 import { BsBookmarkPlus } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -16,6 +27,10 @@ import {
 	SkeletonCircle,
 	SkeletonText,
 } from '@chakra-ui/react';
+import {
+	MdOutlineArticle,
+	MdOutlineDraw,
+} from 'react-icons/md';
 
 export default function Post({ post }) {
 	const {
@@ -31,8 +46,107 @@ export default function Post({ post }) {
 		image,
 		id,
 	} = post;
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<div>
+			<Button
+				style={{
+					position: 'fixed',
+					bottom: 20,
+					right: 30,
+					paddingTop: '2rem',
+					paddingBottom: '2rem',
+					borderRadius: '10px',
+					zIndex: 1000,
+				}}
+				onClick={onOpen}
+			>
+				<MdOutlineDraw
+					style={{ width: '3rem', height: '3rem' }}
+					color="purple.500"
+				/>
+			</Button>
+			<Modal
+				isCentered
+				onClose={onClose}
+				isOpen={isOpen}
+				motionPreset="slideInBottom"
+			>
+				<ModalOverlay />
+				<ModalContent>
+					<ModalHeader>Publishing room</ModalHeader>
+					<ModalCloseButton />
+					<ModalBody>
+						<SimpleGrid
+							minChildWidth="120px"
+							spacing="40px"
+						>
+							<Box
+								bg="gray.100"
+								height="100px"
+								borderRadius={'md'}
+								align="center"
+								as={Link}
+								to={'/protected/create'}
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+									alignItems: 'center',
+								}}
+							>
+								<MdOutlineArticle
+									style={{
+										height: '2rem',
+										width: '2rem',
+									}}
+								/>
+								<Text pt={'1.5'}>Publish Article</Text>
+							</Box>
+
+							<Box
+								bg="gray.100"
+								height="100px"
+								borderRadius={'md'}
+								align="center"
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									justifyContent: 'center',
+									alignItems: 'center',
+								}}
+							>
+								<AiFillAudio
+									style={{
+										height: '2rem',
+										width: '2rem',
+									}}
+								/>
+								<Text pt={'1.5'}>Live Audio Chat</Text>
+							</Box>
+							<Box
+								bg="gray.100"
+								height="100px"
+								borderRadius={'md'}
+							></Box>
+							<Box
+								bg="gray.100"
+								height="100px"
+								borderRadius={'md'}
+							></Box>
+						</SimpleGrid>
+					</ModalBody>
+					<ModalFooter>
+						<Button
+							colorScheme="blue"
+							mr={3}
+							onClick={onClose}
+						>
+							Close
+						</Button>
+					</ModalFooter>
+				</ModalContent>
+			</Modal>
 			{type === 'article' ? (
 				<Box p="0" pt={'1'} mx="auto" maxW="800px">
 					<Box

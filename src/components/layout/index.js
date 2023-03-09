@@ -11,6 +11,7 @@ import {
 import { Box, Flex } from '@chakra-ui/react';
 import ActivityIndicator from 'react-activity-indicator';
 import Rightbar from './Rightbar';
+import { BallTriangle } from 'react-loader-spinner';
 
 export default function Layout() {
 	const { pathname } = useLocation();
@@ -39,14 +40,15 @@ export default function Layout() {
 					height: '100vh',
 				}}
 			>
-				<ActivityIndicator
-					number={5}
-					diameter={10}
-					borderWidth={1}
-					duration={300}
-					activeColor="purple"
-					borderColor="purple"
-					borderRadius="10%"
+				<BallTriangle
+					height={100}
+					width={100}
+					radius={5}
+					color="purple"
+					ariaLabel="ball-triangle-loading"
+					wrapperClass={{}}
+					wrapperStyle=""
+					visible={true}
 				/>
 			</div>
 		);

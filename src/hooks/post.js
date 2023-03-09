@@ -51,6 +51,17 @@ export function useAnnouncement() {
 	return { announcement, isLoading };
 }
 
+export function useCommunity() {
+	const q = query(
+		collection(db, 'community'),
+		orderBy('timestamp', 'desc'),
+	);
+	const [community, isLoading, error] =
+		useCollectionData(q);
+	if (error) throw error;
+	return { community, isLoading };
+}
+
 export function useToggleLike({ id, isLiked, uid }) {
 	const [isLoading, setLoading] = useState(false);
 
@@ -79,6 +90,13 @@ export function usePost(id) {
 	const [post, isLoading] = useDocumentData(q);
 
 	return { post, isLoading };
+}
+
+export function useSingleCommunity(id) {
+	const q = doc(db, 'community', id);
+	const [community, isLoading] = useDocumentData(q);
+
+	return { community, isLoading };
 }
 
 

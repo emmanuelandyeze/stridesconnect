@@ -10,8 +10,12 @@ export default function AnnounceList({ announcements }) {
 			style={{ alignSelf: 'center', width: '100%' }}
 		>
 			{announcements?.length === 0 ? (
-				<Text fontSize={'xl'} textAlign={'center'}>
-					No post yet... Choose what you want to see
+				<Text
+					fontSize={'xl'}
+					textAlign={'center'}
+					justifyContent="center"
+				>
+					You don't belong to any community yet
 				</Text>
 			) : (
 				announcements?.map((post) => (
