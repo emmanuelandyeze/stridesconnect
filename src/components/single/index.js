@@ -74,11 +74,13 @@ export default function Article() {
 								style={{
 									paddingTop: '1rem',
 								}}
+								fontFamily="Open Sans"
 							>
 								{post.title}
 							</Text>
 							<Text
 								fontStyle={'italic'}
+								fontFamily="Open Sans"
 								style={{
 									paddingBottom: '1rem',
 								}}
@@ -97,24 +99,31 @@ export default function Article() {
 							/>
 
 							<Box pt={'1.5'}>
-								<Text pb="5">{parse(post.body)}</Text>
-							</Box>
-							{user ? (
-								<Box
-									style={{
-										width: '50%',
-										position: 'fixed',
-										bottom: 8,
-										backgroundColor: '#f1f1f1',
-										borderRadius: '5px',
-										left: 135,
-									}}
+								<Text
+									pb="5"
+									lineHeight={'2'}
+									fontFamily="Open Sans"
 								>
-									<Actions post={post} />
-								</Box>
-							) : (
-								<div></div>
-							)}
+									{parse(post.body)}
+								</Text>
+								{user ? (
+									<Box
+										style={{
+											// width: '100%',
+											position: 'fixed',
+											bottom: 8,
+											backgroundColor: '#f1f1f1',
+											borderRadius: '5px',
+										}}
+										w="460px"
+										shadow={'lg'}
+									>
+										<Actions post={post} />
+									</Box>
+								) : (
+									<div></div>
+								)}
+							</Box>
 						</Box>
 						{/* <NewComment post={post} />
 				<CommentList post={post} /> */}

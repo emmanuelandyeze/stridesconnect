@@ -36,24 +36,29 @@ export default function Actions({ post }) {
 
 	return (
 		<div>
-			<Flex>
-				<Flex alignItems={'center'}>
-					<IconButton
-						size="md"
-						onClick={toggleLike}
-						// isLoading={likeLoading || userLoading}
-						colorScheme={'red'}
-						variant="ghost"
-						icon={isLiked ? <FaHeart /> : <FaRegHeart />}
-						isRound
-					/>
-					{likes.length}
+			<Flex justifyContent={'space-between'}>
+				<Flex>
+					<Flex alignItems={'center'}>
+						<IconButton
+							size="md"
+							onClick={toggleLike}
+							// isLoading={likeLoading || userLoading}
+							colorScheme={'red'}
+							variant="ghost"
+							icon={isLiked ? <FaHeart /> : <FaRegHeart />}
+							isRound
+						/>
+						{likes.length}
+					</Flex>
 				</Flex>
-				<Flex alignItems={'center'} ml="2">
+				<Flex
+					alignItems={'center'}
+					ml="2"
+					as={Link}
+					to={`${PROTECTED}/comments/${id}`}
+				>
 					<IconButton
 						size="lg"
-						as={Link}
-						to={`${PROTECTED}/comments/${id}`}
 						// isLoading={likeLoading || userLoading}
 						colorScheme={'purple'}
 						variant="ghost"
@@ -66,35 +71,16 @@ export default function Actions({ post }) {
 						}
 						isRound
 					/>
-					{comments?.length}
+					{comments?.length} Comments
 				</Flex>
-				{/* <IconButton
-					ml={'auto'}
-					size="md"
-					// onClick={deletePost}
-					// isLoading={likeLoading || userLoading}
-					colorScheme={'red'}
-					variant="ghost"
-					icon={<FaTrash />}
-					isRound
-					
-				/> */}
 				<Flex>
 					<IconButton
 						ml={'auto'}
 						size="lg"
-						// onClick={deletePost}
-						// isLoading={likeLoading || userLoading}
-						// colorScheme={'gray.200'}
 						variant="ghost"
 						icon={<BsBookmarkPlus />}
 						isRound
 					/>
-					{/* <ShareSocial
-						title={'sharing happiness'}
-						url="url_to_share.com"
-						socialTypes={['facebook', 'twitter']}
-					/> */}
 				</Flex>
 			</Flex>
 		</div>
