@@ -16,7 +16,11 @@ export default function NewComment({ post }) {
 	const { user, isLoading: authLoading } = useAuth();
 	const { register, handleSubmit, reset } = useForm();
 	const { addComment, isLoading: commentLoading } =
-		useAddComment({ postID, uid: user?.id });
+		useAddComment({
+			postID,
+			uid: user?.id,
+			tag: user?.tag,
+		});
 
 	async function handleAddComment(data) {
 		addComment(data.text);

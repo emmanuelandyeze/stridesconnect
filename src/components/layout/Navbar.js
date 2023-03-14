@@ -114,7 +114,7 @@ export default function Navbar() {
 								</ChakraLink>
 								<ChakraLink
 									as={Link}
-									to={`${PROTECTED}/profile/${user?.id}`}
+									to={`/${user?.tag}`}
 									style={{
 										display: 'flex',
 										flexDirection: 'row',
@@ -209,9 +209,7 @@ export default function Navbar() {
 								<MenuList>
 									<MenuItem
 										onClick={() =>
-											navigate(
-												`${PROTECTED}/profile/${user?.id}`,
-											)
+											navigate(`/${user?.tag}`)
 										}
 									>
 										My Profile

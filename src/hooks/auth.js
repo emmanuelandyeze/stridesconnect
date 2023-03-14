@@ -23,7 +23,14 @@ export function useAuth() {
 		async function fetchData() {
 			setLoading(true);
 
-			const ref = doc(db, 'users', authUser.uid);
+			const ref = doc(
+				db,
+				'users',
+				authUser.email.replace(
+					/@|gmail.com|yahoo.com/g,
+					'',
+				),
+			);
 			const docSnap = await getDoc(ref);
 			const isUser = docSnap.data();
 
@@ -118,13 +125,30 @@ export function useRegister() {
 					password,
 				);
 
-				await setDoc(doc(db, 'users', res.user.uid), {
-					id: res.user.uid,
-					username: username,
-					avatar: '',
-					date: Date.now(),
-					channelName: '',
-				});
+				await setDoc(
+					doc(
+						db,
+						'users',
+						res.user.email.replace(
+							/@|gmail.com|yahoo.com/g,
+							'',
+						),
+					),
+					{
+						id: res.user.uid,
+						username: username,
+						avatar: '',
+						date: Date.now(),
+						creator: false,
+						tag: res.user.email.replace(
+							/@|gmail.com|yahoo.com/g,
+							'',
+						),
+						niche: [],
+						followers: [],
+						following: [],
+					},
+				);
 
 				toast({
 					title: 'Account Created',

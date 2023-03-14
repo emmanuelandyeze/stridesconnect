@@ -18,14 +18,16 @@ import {
 } from 'react-firebase-hooks/firestore';
 import { useNavigate } from 'react-router-dom';
 
-export function useUser(id) {
-	const q = query(doc(db, 'users', id));
+export function useUser(tag) {
+	const q = query(doc(db, 'users', tag));
 	const [user, isLoading] = useDocumentData(q);
+
+	console.log(user);
 
 	return { user, isLoading };
 }
 
-export function useUpdateAvatar(uid) {
+export function useUpdateAvatar(tag) {
 	const [isLoading, setLoading] = useState(false);
 	const [file, setFile] = useState(null);
 	const toast = useToast();
@@ -45,12 +47,12 @@ export function useUpdateAvatar(uid) {
 		}
 		setLoading(true);
 
-		const fileRef = ref(storage, 'avatars/' + uid);
+		const fileRef = ref(storage, 'avatars/' + tag);
 		await uploadBytes(fileRef, file);
 
 		const avatarUrl = await getDownloadURL(fileRef);
 
-		const docRef = doc(db, 'users', uid);
+		const docRef = doc(db, 'users', tag);
 		await updateDoc(docRef, { avatar: avatarUrl });
 
 		toast({

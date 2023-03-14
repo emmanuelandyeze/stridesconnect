@@ -157,6 +157,7 @@ function Create() {
 			uid: user.id,
 			likes: [],
 			date: Date.now(),
+			tag: user.tag,
 		});
 
 		console.log('New doc added with id', docRef.id);

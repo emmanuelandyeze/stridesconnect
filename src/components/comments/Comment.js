@@ -13,8 +13,8 @@ import React from 'react';
 import { FaTrash } from 'react-icons/fa';
 
 export default function Comment({ comment }) {
-	const { text, uid, date, id } = comment;
-	const { user, isLoading: userLoading } = useUser(uid);
+	const { text, uid, date, id, tag } = comment;
+	const { user, isLoading: userLoading } = useUser(tag);
 	const { user: authUser, isLoading: authLoading } =
 		useAuth();
 	const { deleteComment, isLoading: deleteLoading } =

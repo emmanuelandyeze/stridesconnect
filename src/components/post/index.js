@@ -49,23 +49,6 @@ export default function Post({ post }) {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<div>
-			<Button
-				style={{
-					position: 'fixed',
-					bottom: 20,
-					right: 30,
-					paddingTop: '2rem',
-					paddingBottom: '2rem',
-					borderRadius: '10px',
-					zIndex: 1000,
-				}}
-				onClick={onOpen}
-			>
-				<MdOutlineDraw
-					style={{ width: '3rem', height: '3rem' }}
-					color="purple.500"
-				/>
-			</Button>
 			<Modal
 				isCentered
 				onClose={onClose}
@@ -148,78 +131,97 @@ export default function Post({ post }) {
 				</ModalContent>
 			</Modal>
 			{type === 'article' ? (
-				<Box p="0" pt={'1'} mx="auto" maxW="800px">
-					<Box
-						borderBottom={'2px solid'}
-						borderColor="gray.100"
-						borderRadius={'none'}
-						style={{ padding: '.5rem' }}
+				<>
+					<Button
+						style={{
+							position: 'fixed',
+							bottom: 20,
+							right: 30,
+							paddingTop: '2rem',
+							paddingBottom: '2rem',
+							borderRadius: '10px',
+							zIndex: 1000,
+						}}
+						onClick={onOpen}
 					>
-						<Header post={post} />
-
+						<MdOutlineDraw
+							style={{ width: '3rem', height: '3rem' }}
+							color="purple.500"
+						/>
+					</Button>
+					<Box p="0" pt={'1'} mx="auto" maxW="800px">
 						<Box
-							style={{
-								display: 'flex',
-								flexDirection: 'row',
-								justifyContent: 'space-between',
-								alignItems: 'flex-start',
-							}}
-							as={Link}
-							to={`/articles/${id}`}
+							borderBottom={'2px solid'}
+							borderColor="gray.100"
+							borderRadius={'none'}
+							style={{ padding: '.5rem' }}
 						>
-							<div>
-								<Text
-									fontSize={'lg'}
-									fontWeight={'bold'}
-									style={{ fontFamily: 'Tilt Neon' }}
-								>
-									{title}
-								</Text>
-							</div>
+							<Header post={post} />
 
-							<Img
-								src={image}
+							<Box
 								style={{
-									height: '4rem',
-									width: '5rem',
-									objectFit: 'cover',
-									marginLeft: '1rem',
-									borderRadius: '5px',
+									display: 'flex',
+									flexDirection: 'row',
+									justifyContent: 'space-between',
+									alignItems: 'flex-start',
 								}}
-							/>
-						</Box>
-
-						{/* <Actions post={post} /> */}
-						<div
-							style={{
-								display: 'flex',
-								flexDirection: 'row',
-								justifyContent: 'space-between',
-								alignItems: 'center',
-							}}
-						>
-							<Text
-								style={{
-									fontSize: '.8rem',
-									textAlign: 'left',
-									paddingLeft: '0rem',
-									borderRadius: '5px',
-								}}
-								// bg="gray.100"
-								color={'gray.500'}
+								as={Link}
+								to={`/articles/${id}`}
 							>
-								{niche}
-							</Text>
+								<div>
+									<Text
+										fontSize={'lg'}
+										fontWeight={'bold'}
+										style={{ fontFamily: 'Tilt Neon' }}
+									>
+										{title}
+									</Text>
+								</div>
 
-							<IconButton
-								size="lg"
-								variant="ghost"
-								icon={<BsBookmarkPlus />}
-								isRound
-							/>
-						</div>
+								<Img
+									src={image}
+									style={{
+										height: '4rem',
+										width: '5rem',
+										objectFit: 'cover',
+										marginLeft: '1rem',
+										borderRadius: '5px',
+									}}
+								/>
+							</Box>
+
+							{/* <Actions post={post} /> */}
+							<div
+								style={{
+									display: 'flex',
+									flexDirection: 'row',
+									justifyContent: 'space-between',
+									alignItems: 'center',
+								}}
+							>
+								<Text
+									style={{
+										fontSize: '.8rem',
+										textAlign: 'left',
+										paddingLeft: '0rem',
+										borderRadius: '5px',
+									}}
+									// bg="gray.100"
+									color={'gray.500'}
+								>
+									{niche}
+								</Text>
+
+								<IconButton
+									size="lg"
+									variant="ghost"
+									icon={<BsBookmarkPlus />}
+									isRound
+								/>
+							</div>
+						</Box>
 					</Box>
-				</Box>
+				</>
 			) : (
 				<Box p="0" pt={'1'} mx="auto" maxW="600px">
 					<Box

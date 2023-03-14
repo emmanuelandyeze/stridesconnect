@@ -15,13 +15,12 @@ import {
 	useDocumentData,
 } from 'react-firebase-hooks/firestore';
 
-export function useProfilePosts(uid) {
-	console.log(uid);
+export function useProfilePosts(tag) {
 	const q = query(
 		collection(db, 'posts'),
 
 		orderBy('timestamp', 'desc'),
-		where('uid', '==', uid),
+		where('tag', '==', tag),
 	);
 	const [posts, isLoading, error] = useCollectionData(q);
 	if (error) throw error;

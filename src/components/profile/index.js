@@ -26,28 +26,31 @@ import { format } from 'date-fns';
 import { useAuth } from 'hooks/auth';
 import { FaEdit } from 'react-icons/fa';
 import { BallTriangle } from 'react-loader-spinner';
+import Navbar from 'components/layout/Navbar';
 
 export default function Profile() {
-	const { id } = useParams();
+	const { tag } = useParams();
 	const { posts, isLoading: postsLoading } =
-		useProfilePosts(id);
+		useProfilePosts(tag);
 	const { user: authUser, isLoading: authLoading } =
 		useAuth();
-	const { user, isLoading: userLoading } = useUser(id);
+	const { user, isLoading: userLoading } = useUser(tag);
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
+	// console.log(user);
 
 	const {
 		setFile,
 		updateAvatar,
 		isLoading: fileLoading,
 		fileURL,
-	} = useUpdateAvatar(user?.id);
+	} = useUpdateAvatar(user?.tag);
 
 	function handleChange(e) {
 		setFile(e.target.files[0]);
 	}
 
-	if (userLoading || postsLoading)
+	if (!posts)
 		return (
 			<div
 				style={{
@@ -73,7 +76,13 @@ export default function Profile() {
 
 	return (
 		<div>
-			<Stack spacing={'5'}>
+			<Navbar />
+			<Stack
+				spacing={'5'}
+				pt="14"
+				alignItems={'center'}
+				style={{ alignSelf: 'center', width: '100%' }}
+			>
 				<Flex
 					p={['4', '6']}
 					pos="relative"
@@ -103,9 +112,9 @@ export default function Profile() {
 							<Text color={'gray.700'} fontSize={'sm'}>
 								Posts: {posts.length}
 							</Text>
-							<Text color={'gray.700'} fontSize={'sm'}>
+							{/* <Text color={'gray.700'} fontSize={'sm'}>
 								Likes: todo
-							</Text>
+							</Text> */}
 							<Text color={'gray.700'} fontSize={'sm'}>
 								Joined: {format(user.date, 'MMM YYY')}
 							</Text>

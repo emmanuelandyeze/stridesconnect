@@ -16,10 +16,11 @@ export const ROOT = '/';
 export const LOGIN = '/login';
 export const REGISTER = '/register';
 
+export const PROFILE = '/:tag';
 export const PROTECTED = '/protected';
 export const DASHBOARD = '/protected/dashboard';
 export const USERS = '/protected/users';
-export const PROFILE = '/protected/profile/:id';
+
 export const CREATE = '/protected/create';
 export const ANNOUNCE = '/protected/announce';
 export const COMMENT = '/protected/comments/:id';
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
 	{ path: ROOT, element: <Home /> },
 	{ path: LOGIN, element: <Login /> },
 	{ path: REGISTER, element: <Register /> },
+	{
+		path: PROFILE,
+		element: <Profile />,
+	},
 	{
 		path: SINGLEARTICLE,
 		element: <Article />,
@@ -46,10 +51,7 @@ export const router = createBrowserRouter([
 				path: USERS,
 				element: <Users />,
 			},
-			{
-				path: PROFILE,
-				element: <Profile />,
-			},
+
 			{
 				path: CREATE,
 				element: <Create />,

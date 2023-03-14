@@ -67,7 +67,7 @@ export default function Sidebar() {
 					</ChakraLink>
 					<ChakraLink
 						as={Link}
-						to={`${PROTECTED}/profile/${user?.id}`}
+						to={`/${user?.tag}`}
 						style={{
 							display: 'flex',
 							flexDirection: 'row',

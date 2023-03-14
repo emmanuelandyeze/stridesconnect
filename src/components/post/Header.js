@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import { PROTECTED } from 'lib/routes';
 
 export default function Header({ post }) {
-	const { uid, date } = post;
-	const { user, isLoading } = useUser(uid);
+	const { uid, date, tag } = post;
+	const { user, isLoading } = useUser(tag);
 
 	if (!isLoading)
 		return (
@@ -22,7 +22,7 @@ export default function Header({ post }) {
 				}}
 			>
 				<Link
-					to={`${PROTECTED}/profile/${user?.id}`}
+					to={`/${user?.tag}`}
 					style={{
 						display: 'flex',
 						flexDirection: 'row',
