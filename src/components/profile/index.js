@@ -77,7 +77,12 @@ export default function Profile() {
 	return (
 		<div>
 			<Sidebar />
-			<Stack spacing={'5'} mx="auto" pt="14">
+			<Stack
+				spacing={'5'}
+				mx="auto"
+				pt="14"
+				width={'500px'}
+			>
 				<Flex align={'center'} ml="10">
 					<Avatar size={'2xl'} user={user} />
 
