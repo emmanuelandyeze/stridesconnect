@@ -13,7 +13,7 @@ export default function Comments() {
 	if (isLoading) return <Text>Loading comments...</Text>;
 
 	return (
-		<div>
+		<div style={{ paddingTop: '3rem' }}>
 			<Box align="left">
 				<Post post={post} />
 				<CommentList post={post} />

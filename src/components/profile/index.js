@@ -86,8 +86,7 @@ export default function Profile() {
 							<Text fontSize={'2xl'} fontWeight="bold">
 								{user.username}
 							</Text>
-							{!authLoading &&
-							authUser?.email === user?.email ? (
+							{!authLoading && authUser?.id === user?.id ? (
 								<Button
 									colorScheme={'purple'}
 									onClick={onOpen}

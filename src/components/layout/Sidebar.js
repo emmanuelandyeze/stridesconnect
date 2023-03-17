@@ -394,7 +394,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 						fontFamily="Open Sans"
 						fontWeight="bold"
 					>
-						Your Feed
+						Inbox
 					</Text>
 
 					<Text
