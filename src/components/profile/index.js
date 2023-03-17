@@ -77,11 +77,11 @@ export default function Profile() {
 	return (
 		<div>
 			<Sidebar />
-			<Stack spacing={'5'} mx="auto" pt="14" width="600px">
-				<Flex align={'center'}>
+			<Stack spacing={'5'} mx="auto" pt="14">
+				<Flex align={'center'} ml="10">
 					<Avatar size={'2xl'} user={user} />
 
-					<Stack ml={'10'}>
+					<Stack ml={'2'}>
 						<HStack>
 							<Text fontSize={'2xl'} fontWeight="bold">
 								{user.username}
@@ -116,7 +116,7 @@ export default function Profile() {
 					<Text>Posts Loading</Text>
 				) : (
 					<>
-						<Box px={'4'}>
+						<Box mx={'auto'} p="6" width="500px">
 							<PostsList posts={posts} />
 						</Box>
 					</>
