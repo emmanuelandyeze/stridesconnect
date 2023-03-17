@@ -26,7 +26,7 @@ import { format } from 'date-fns';
 import { useAuth } from 'hooks/auth';
 import { FaEdit } from 'react-icons/fa';
 import { BallTriangle } from 'react-loader-spinner';
-import Navbar from 'components/layout/Navbar';
+import Sidebar from 'components/layout/Sidebar';
 
 export default function Profile() {
 	const { tag } = useParams();
@@ -76,38 +76,29 @@ export default function Profile() {
 
 	return (
 		<div>
-			<Navbar />
-			<Stack
-				spacing={'5'}
-				pt="14"
-				alignItems={'center'}
-				style={{ alignSelf: 'center', width: '100%' }}
-			>
-				<Flex
-					p={['4', '6']}
-					pos="relative"
-					align={'center'}
-				>
+			<Sidebar />
+			<Stack spacing={'5'} mx="auto" pt="14" width="600px">
+				<Flex align={'center'}>
 					<Avatar size={'2xl'} user={user} />
 
-					{!authLoading && authUser?.id === user?.id ? (
-						<Button
-							pos={'absolute'}
-							mb="2"
-							top={'6'}
-							right={'6'}
-							colorScheme={'purple'}
-							onClick={onOpen}
-						>
-							<FaEdit size={20} />
-						</Button>
-					) : (
-						<></>
-					)}
 					<Stack ml={'10'}>
-						<Text fontSize={'2xl'} fontWeight="bold">
-							{user.username}
-						</Text>
+						<HStack>
+							<Text fontSize={'2xl'} fontWeight="bold">
+								{user.username}
+							</Text>
+							{!authLoading &&
+							authUser?.email === user?.email ? (
+								<Button
+									colorScheme={'purple'}
+									onClick={onOpen}
+								>
+									<FaEdit size={20} />
+								</Button>
+							) : (
+								<></>
+							)}
+						</HStack>
+
 						<HStack spacing={'10'}>
 							<Text color={'gray.700'} fontSize={'sm'}>
 								Posts: {posts.length}

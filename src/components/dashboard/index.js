@@ -80,40 +80,14 @@ export default function Dashboard() {
 			</div>
 		);
 	return (
-		<div>
-			<Tabs>
-				<TabList alignItems={'center'}>
-					<Tab
-						_selected={{
-							color: 'purple.800',
-							fontWeight: 'bold',
-							borderBottom: '3px solid purple',
-						}}
-						style={{ width: '50%', height: '4rem' }}
-					>
-						Reads for you
-					</Tab>
-					<Tab
-						_selected={{
-							color: 'purple.800',
-							fontWeight: 'bold',
-							borderBottom: '3px solid purple',
-						}}
-						style={{ width: '50%', height: '4rem' }}
-					>
-						Community
-					</Tab>
-				</TabList>
-
-				<TabPanels>
-					<TabPanel>
-						<PostsList posts={posts} />
-					</TabPanel>
-					<TabPanel>
-						<CommunityList communities={community} />
-					</TabPanel>
-				</TabPanels>
-			</Tabs>
+		<div
+			style={{
+				paddingTop: '3rem',
+				marginLeft: '1rem',
+				marginRight: '1rem',
+			}}
+		>
+			<PostsList posts={posts} />
 		</div>
 	);
 }

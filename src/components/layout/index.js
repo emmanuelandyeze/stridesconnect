@@ -55,20 +55,13 @@ export default function Layout() {
 
 	return (
 		<>
-			<Navbar />
-			<Flex
-				pt="16"
-				pb="12"
-				mx="auto"
-				w="full"
-				maxW="1200px"
-			>
+			{/* <Navbar /> */}
+			<Box w="full" bgColor={'white'}>
 				<Sidebar />
-				<Box w="900px">
+				<Flex mx={'auto'} maxWidth="600px">
 					<Outlet />
-				</Box>
-				<Rightbar />
-			</Flex>
+				</Flex>
+			</Box>
 		</>
 	);
 }

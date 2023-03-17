@@ -22,6 +22,7 @@ import {
 	Button,
 	Img,
 	Select,
+	Textarea,
 	useToast,
 } from '@chakra-ui/react';
 
@@ -137,14 +138,6 @@ function Create() {
 
 		setLoading(true);
 
-		//Create a post and add to firestore 'posts' collection
-
-		//Get post ID
-
-		//Upload image to firbase storage with post id
-
-		//Get a download url from firebase and update the original post with image
-
 		const docRef = await addDoc(collection(db, 'posts'), {
 			username: user.username,
 			title: titleRef.current.value,
@@ -195,7 +188,7 @@ function Create() {
 	// 	return 'Posting announcement...';
 	// }
 	return (
-		<>
+		<div style={{ paddingTop: '5rem' }}>
 			<div>
 				<input
 					ref={filePickerRef}
@@ -235,7 +228,7 @@ function Create() {
 							alignSelf: 'center',
 							paddingTop: '1rem',
 							paddingLeft: '1rem',
-							borderRadius: '50%',
+							borderRadius: '5%',
 							marginLeft: '1rem',
 						}}
 					>
@@ -253,7 +246,7 @@ function Create() {
 						width: '100%',
 					}}
 				>
-					<input
+					<Textarea
 						type="text"
 						placeholder="Enter Title"
 						ref={titleRef}
@@ -262,9 +255,10 @@ function Create() {
 							marginBottom: '.5rem',
 							marginTop: '1rem',
 							paddingLeft: '1rem',
+							border: 'none',
 						}}
 					/>
-					<input
+					<Textarea
 						type="text"
 						placeholder="Enter Description"
 						ref={descriptionRef}
@@ -293,6 +287,64 @@ function Create() {
 						</option>
 						<option value="Freelancing">Freelancing</option>
 						<option value="Finance">Finance</option>
+						<option value="Food">Food</option>
+						<option value="History">History</option>
+						<option value="Architecture">
+							Architecture
+						</option>
+						<option value="Artificial Intelligence">
+							Artificial Intelligence
+						</option>
+						<option value="Art">Art</option>
+						<option value="Books and Reading">
+							Books and Reading
+						</option>
+						<option value="Business">Business</option>
+						<option value="Cooking">Cooking</option>
+						<option value="Creative & Design">
+							Creative & Design
+						</option>
+						<option value="Economics">Economics</option>
+						<option value="Education">Education</option>
+						<option value="Entrepreneurship">
+							Entrepreneurship
+						</option>
+						<option value="Fashion">Fashion</option>
+						<option value="Fiction">Fiction</option>
+						<option value="Gaming">Gaming</option>
+						<option value="Health">Health</option>
+						<option value="Humour">Humour</option>
+						<option value="Leadership">Leadership</option>
+						<option value="Life & Life Lessons">
+							Life & Life Lessons
+						</option>
+						<option value="Love">Love</option>
+						<option value="Mental Health">
+							Mental Health
+						</option>
+						<option value="Movies">Movies</option>
+						<option value="Music">Music</option>
+						<option value="Parenting">Parenting</option>
+						<option value="Personal Stories">
+							Personal Stories
+						</option>
+						<option value="Politics">Politics</option>
+						<option value="Productivity">
+							Productivity
+						</option>
+						<option value="Satire">Satire</option>
+						<option value="Science">Science</option>
+						<option value="Self Improvement">
+							Self Improvement
+						</option>
+						<option value="Social Media">
+							Social Media
+						</option>
+						<option value="Space">Space</option>
+						<option value="Sports">Sports</option>
+						<option value="Technology">Technology</option>
+						<option value="Travel">Travel</option>
+						<option value="Writing">Writing</option>
 					</Select>
 				</div>
 
@@ -325,7 +377,7 @@ function Create() {
 					</Button>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

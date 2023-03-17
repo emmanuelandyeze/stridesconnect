@@ -44,30 +44,12 @@ export default function Article() {
 
 	return (
 		<div>
-			<Navbar />
-			<Flex
-				pt="16"
-				pb="12"
-				mx="auto"
-				w="full"
-				maxW="1200px"
-			>
-				<Sidebar />
-				<Box w="900px">
-					<Box px={'6'}>
+			<Sidebar />
+			<Flex bgColor={'white'}>
+				<Box mx={'auto'} maxWidth="600px" pt={'10'} px="6">
+					<Box>
 						{/* <Post post={post} /> */}
 						<Box>
-							<Box
-								style={{
-									borderBottom: '1px solid',
-									paddingTop: '1rem',
-								}}
-								borderColor="gray.200"
-								// height={'5rem'}
-								py={'1.5'}
-							>
-								<Header post={post} />
-							</Box>
 							<Text
 								fontSize={'2xl'}
 								fontWeight={'bold'}
@@ -87,6 +69,17 @@ export default function Article() {
 							>
 								{post.description}
 							</Text>
+							<Box
+								style={{
+									// borderBottom: '1px solid',
+									paddingBottom: '1rem',
+								}}
+								borderColor="gray.200"
+								// height={'5rem'}
+								py={'1.5'}
+							>
+								<Header post={post} />
+							</Box>
 							<Img
 								align={'center'}
 								src={post.image}
@@ -125,11 +118,8 @@ export default function Article() {
 								)}
 							</Box>
 						</Box>
-						{/* <NewComment post={post} />
-				<CommentList post={post} /> */}
 					</Box>
 				</Box>
-				<Rightbar />
 			</Flex>
 		</div>
 	);

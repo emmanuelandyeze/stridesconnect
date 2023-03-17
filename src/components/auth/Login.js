@@ -7,6 +7,8 @@ import {
 	FormLabel,
 	Heading,
 	Input,
+	InputGroup,
+	InputRightElement,
 	Link,
 	Text,
 } from '@chakra-ui/react';
@@ -21,6 +23,8 @@ import {
 
 export default function Login() {
 	const { login, isLoading } = useLogin();
+	const [show, setShow] = React.useState(false);
+	const handleClick = () => setShow(!show);
 	const {
 		register,
 		handleSubmit,
@@ -63,11 +67,23 @@ export default function Login() {
 					</FormControl>
 					<FormControl isInvalid={errors.password} py="2">
 						<FormLabel></FormLabel>
-						<Input
-							type="password"
-							placeholder="********"
-							{...register('password', passwordValidate)}
-						/>
+						<InputGroup size="md">
+							<Input
+								type={show ? 'text' : 'password'}
+								placeholder="Enter password"
+								{...register('password', passwordValidate)}
+							/>
+							<InputRightElement width="4.5rem">
+								<Button
+									h="1.75rem"
+									size="sm"
+									onClick={handleClick}
+								>
+									{show ? 'Hide' : 'Show'}
+								</Button>
+							</InputRightElement>
+						</InputGroup>
+
 						<FormErrorMessage>
 							{errors.password && errors.password.message}
 						</FormErrorMessage>

@@ -45,7 +45,7 @@ export default function Rightbar() {
 					bgColor="#f1f1f1"
 					pb={'5'}
 					borderRadius="md"
-					mt={'5'}
+					// mt={'5'}
 					pl="5"
 					pr={'5'}
 					width={'90%'}
