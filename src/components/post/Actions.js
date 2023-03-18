@@ -199,62 +199,60 @@ export default function Actions({ post }) {
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
-			<Flex justifyContent={'space-between'}>
-				<Flex>
-					<Flex alignItems={'center'}>
+			<Flex maxW={'600px'}>
+				<Flex
+					justifyContent={'space-between'}
+					flexDirection={'column'}
+					alignItems="center"
+					pr={'3'}
+					py="2"
+					style={{ height: '150px' }}
+				>
+					<Flex>
+						<Flex alignItems={'center'}>
+							<IconButton
+								size={{ base: 'sm', md: 'lg' }}
+								onClick={toggleLike}
+								// isLoading={likeLoading || userLoading}
+								colorScheme={'red'}
+								variant="ghost"
+								icon={
+									isLiked ? <FaHeart /> : <FaRegHeart />
+								}
+								isRound
+							/>
+							{likes.length}
+						</Flex>
+					</Flex>
+					<Flex
+						alignItems={'center'}
+						as={Link}
+						to={`${PROTECTED}/comments/${id}`}
+					>
 						<IconButton
-							size="md"
-							onClick={toggleLike}
+							size={{ base: 'sm', md: 'lg' }}
 							// isLoading={likeLoading || userLoading}
-							colorScheme={'red'}
+							colorScheme={'purple'}
 							variant="ghost"
-							icon={isLiked ? <FaHeart /> : <FaRegHeart />}
+							icon={
+								comments?.length === 0 ? (
+									<FaRegCommentAlt />
+								) : (
+									<FaCommentAlt />
+								)
+							}
 							isRound
 						/>
-						{likes.length}
+						{comments?.length}
 					</Flex>
-				</Flex>
-				<Flex
-					alignItems={'center'}
-					ml="2"
-					as={Link}
-					to={`${PROTECTED}/comments/${id}`}
-				>
-					<IconButton
-						size="lg"
-						// isLoading={likeLoading || userLoading}
-						colorScheme={'purple'}
-						variant="ghost"
-						icon={
-							comments?.length === 0 ? (
-								<FaRegCommentAlt />
-							) : (
-								<FaCommentAlt />
-							)
-						}
-						isRound
-					/>
-					{comments?.length} Comments
-				</Flex>
-				<Flex alignItems={'center'}>
-					{/* <IconButton
-						ml={'auto'}
-						size="lg"
-						variant="ghost"
-						icon={<FaShareAlt />}
-						isRound
-					/>
-					<Text>
-						<FacebookShareCount url={`/articles/${id}`} />
-					</Text> */}
-
-					<Button onClick={onOpen}>
-						<FaShareAlt
-							color="purple.500"
-							style={{ marginRight: 4 }}
-						/>
-						<Text> Share</Text>
-					</Button>
+					<Flex alignItems={'center'}>
+						<Button onClick={onOpen}>
+							<FaShareAlt
+								color="purple.500"
+								style={{ marginRight: 4 }}
+							/>
+						</Button>
+					</Flex>
 				</Flex>
 			</Flex>
 		</div>

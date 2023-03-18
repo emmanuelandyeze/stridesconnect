@@ -48,10 +48,9 @@ export default function Article() {
 			<Flex bgColor={'white'}>
 				<Box mx={'auto'} maxWidth="600px" pt={'10'} px="6">
 					<Box>
-						{/* <Post post={post} /> */}
 						<Box>
 							<Text
-								fontSize={'2xl'}
+								fontSize={{ base: 'lg', md: '2xl' }}
 								fontWeight={'bold'}
 								style={{
 									paddingTop: '1rem',
@@ -61,6 +60,7 @@ export default function Article() {
 								{post.title}
 							</Text>
 							<Text
+								fontSize={{ base: 'xs', md: 'lg' }}
 								fontStyle={'italic'}
 								fontFamily="Open Sans"
 								style={{
@@ -90,32 +90,52 @@ export default function Article() {
 									marginBottom: '1rem',
 								}}
 							/>
-
-							<Box pt={'1.5'}>
-								<Text
-									pb="5"
-									lineHeight={'2'}
-									fontFamily="Open Sans"
-								>
-									{parse(post.body)}
-								</Text>
-								{user ? (
+							{user ? (
+								<>
 									<Box
 										style={{
 											// width: '100%',
-											position: 'fixed',
-											bottom: 8,
+											bottom: 0,
+											right: 0,
 											backgroundColor: '#f1f1f1',
 											borderRadius: '5px',
 										}}
-										w="460px"
+										// w="460px"
 										shadow={'lg'}
+										pos="fixed"
+										display={{ base: 'block', md: 'none' }}
 									>
 										<Actions post={post} />
 									</Box>
-								) : (
-									<div></div>
-								)}
+									<Box
+										style={{
+											// width: '100%',
+											bottom: 8,
+											right: 525,
+											backgroundColor: '#f1f1f1',
+											borderRadius: '5px',
+										}}
+										display={{ base: 'none', md: 'block' }}
+										// w="460px"
+										shadow={'lg'}
+										pos="fixed"
+									>
+										<Actions post={post} />
+									</Box>
+								</>
+							) : (
+								<div></div>
+							)}
+
+							<Box pt={'1.5'}>
+								<Text
+									pb="24"
+									lineHeight={'2'}
+									fontFamily="Open Sans"
+									fontSize={{ base: 'xs', md: 'lg' }}
+								>
+									{parse(post.body)}
+								</Text>
 							</Box>
 						</Box>
 					</Box>

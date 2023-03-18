@@ -112,7 +112,7 @@ export default function SidebarWithHeader({
 				onClose={onClose}
 				returnFocusOnClose={false}
 				onOverlayClick={onClose}
-				size="full"
+				size="sm"
 			>
 				<DrawerContent>
 					<SidebarContent onClose={onClose} />
@@ -235,7 +235,7 @@ const SidebarContent = ({
 					'gray.200',
 					'gray.700',
 				)}
-				w={{ base: 'full', md: 60 }}
+				w={{ base: '50%', md: 60 }}
 				pos="fixed"
 				h="full"
 				{...rest}
@@ -399,10 +399,10 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
 					<Text
 						display={{ base: 'flex', md: 'none' }}
-						fontSize="xl"
+						fontSize="md"
 						fontFamily="Open Sans"
 						fontWeight="bold"
-						ml={'1'}
+						ml={'14'}
 					>
 						Strides Connect
 					</Text>
@@ -446,7 +446,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 								>
 									{user ? (
 										<HStack>
-											<Avatar user={user} size="md" />
+											<Avatar user={user} size="sm" />
 											<VStack
 												display={{
 													base: 'none',

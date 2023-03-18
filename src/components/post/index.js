@@ -72,7 +72,7 @@ export default function Post({ post }) {
 						>
 							<div>
 								<Text
-									fontSize={'lg'}
+									fontSize={{ base: 'sm', md: 'lg' }}
 									fontWeight={'bold'}
 									style={{ fontFamily: 'Open Sans' }}
 								>
@@ -82,6 +82,7 @@ export default function Post({ post }) {
 									fontFamily={'Open Sans'}
 									style={{ fontSize: '.8rem' }}
 									color="gray.600"
+									display={{ base: 'none', md: 'block' }}
 								>
 									{description.substring(0, 154)}...
 								</Text>
@@ -89,6 +90,18 @@ export default function Post({ post }) {
 
 							<Img
 								src={image}
+								display={{ base: 'block', md: 'none' }}
+								style={{
+									height: '4rem',
+									width: '5rem',
+									objectFit: 'cover',
+									marginLeft: '1rem',
+									borderRadius: '5px',
+								}}
+							/>
+							<Img
+								src={image}
+								display={{ base: 'none', md: 'block' }}
 								style={{
 									height: '8rem',
 									width: '8rem',
