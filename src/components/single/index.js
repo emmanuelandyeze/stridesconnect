@@ -132,7 +132,7 @@ export default function Article() {
 									pb="24"
 									lineHeight={'2'}
 									fontFamily="Open Sans"
-									fontSize={{ base: 'xs', md: 'lg' }}
+									fontSize={{ base: 'sm', md: 'md' }}
 								>
 									{parse(post.body)}
 								</Text>

@@ -83,14 +83,22 @@ export default function Profile() {
 				pt="14"
 				width={'500px'}
 			>
-				<Flex align={'center'} ml="10">
-					<Avatar size={'2xl'} user={user} />
-
+				<Flex align={'center'} ml="0">
+					<div style={{ marginRight: '2rem' }}>
+						<Avatar size={'2xl'} user={user} />
+					</div>
 					<Stack ml={'2'}>
 						<HStack>
-							<Text fontSize={'2xl'} fontWeight="bold">
-								{user.username}
-							</Text>
+							{user && user.creator ? (
+								<Text fontSize={'2xl'} fontWeight="bold">
+									{user.creatorName}
+								</Text>
+							) : (
+								<Text fontSize={'2xl'} fontWeight="bold">
+									{user.username}
+								</Text>
+							)}
+
 							{!authLoading && authUser?.id === user?.id ? (
 								<Button
 									colorScheme={'purple'}
@@ -102,6 +110,16 @@ export default function Profile() {
 								<></>
 							)}
 						</HStack>
+						{user && user.creator ? (
+							<Text
+								fontSize={{ base: 'xs', md: 'md' }}
+								fontFamily="Open Sans"
+							>
+								Created by {user.username}
+							</Text>
+						) : (
+							<div></div>
+						)}
 
 						<HStack spacing={'10'}>
 							<Text color={'gray.700'} fontSize={'sm'}>
@@ -116,6 +134,13 @@ export default function Profile() {
 						</HStack>
 					</Stack>
 				</Flex>
+				{user && user.creator ? (
+					<Text fontSize={'sm'} fontFamily="Open Sans">
+						{user.about}
+					</Text>
+				) : (
+					<div></div>
+				)}
 				<Divider />
 				{postsLoading ? (
 					<Text>Posts Loading</Text>

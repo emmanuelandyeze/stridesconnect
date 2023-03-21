@@ -147,6 +147,8 @@ export function useRegister() {
 						niche: [],
 						followers: [],
 						following: [],
+						creatorName: '',
+						about: '',
 					},
 				);
 

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import {
 	IconButton,
 	Box,
@@ -33,6 +33,10 @@ import {
 	ModalBody,
 	SimpleGrid,
 	ModalFooter,
+	FormControl,
+	FormLabel,
+	Textarea,
+	useToast,
 } from '@chakra-ui/react';
 import {
 	FiHome,
@@ -55,6 +59,15 @@ import Avatar from 'components/profile/Avatar';
 import { Search2Icon } from '@chakra-ui/icons';
 import { MdOutlineArticle } from 'react-icons/md';
 import { AiFillAudio } from 'react-icons/ai';
+import { BsCameraFill } from 'react-icons/bs';
+import { db, storage } from 'lib/firebase';
+import {
+	getDownloadURL,
+	ref,
+	uploadString,
+} from 'firebase/storage';
+import { doc, updateDoc } from 'firebase/firestore';
+import { PROTECTED } from 'lib/routes';
 
 interface LinkItemProps {
 	name: string;
@@ -112,7 +125,7 @@ export default function SidebarWithHeader({
 				onClose={onClose}
 				returnFocusOnClose={false}
 				onOverlayClick={onClose}
-				size="sm"
+				// size="xs"
 			>
 				<DrawerContent>
 					<SidebarContent onClose={onClose} />
@@ -136,15 +149,185 @@ const SidebarContent = ({
 	...rest
 }: SidebarProps) => {
 	const { logout, isLoading } = useLogout();
+	const [loading, setLoading] = useState(false);
 	const { user, isLoading: authLoading } = useAuth();
+	const filePickerRef = useRef(null);
+	const titleRef = useRef(null);
+	const descriptionRef = useRef(null);
+	const [selectedFile, setSelectedFile] = useState(null);
+	const [value, setValue] = useState('');
 	const navigate = useNavigate();
+	const toast = useToast();
 	const {
 		isOpen: isOpenPublish,
+
 		onOpen: onOpenPublish,
+
 		onClose: onClosePublish,
 	} = useDisclosure();
+
+	const {
+		isOpen: isOpenCreator,
+		onOpen: onOpenCreator,
+		onClose: onCloseCreator,
+	} = useDisclosure();
+
+	const addImageToPost = (e) => {
+		const reader = new FileReader();
+		if (e.target.files[0]) {
+			reader.readAsDataURL(e.target.files[0]);
+		}
+
+		reader.onload = (readerEvent) => {
+			setSelectedFile(readerEvent.target.result);
+		};
+	};
+	console.log(value);
+
+	const uploadCreator = async () => {
+		if (loading) return;
+
+		setLoading(true);
+
+		const imageRef = ref(storage, `posts/creator/image`);
+
+		await uploadString(
+			imageRef,
+			selectedFile,
+			'data_url',
+		).then(async (snapshot) => {
+			const downloadURL = await getDownloadURL(imageRef);
+			await updateDoc(doc(db, 'users', user?.tag), {
+				avatar: downloadURL,
+				creator: true,
+				creatorName: titleRef.current.value,
+				about: descriptionRef.current.value,
+			});
+		});
+
+		setLoading(false);
+		setSelectedFile(null);
+
+		onCloseCreator();
+		navigate(`${PROTECTED}/dashboard`);
+		toast({
+			title: 'You are now a creator!',
+			status: 'success',
+			isClosable: true,
+			position: 'top',
+			duration: 5000,
+		});
+	};
+
 	return (
 		<>
+			<Modal
+				isCentered
+				onClose={onCloseCreator}
+				isOpen={isOpenCreator}
+				motionPreset="slideInBottom"
+			>
+				<ModalOverlay />
+				<ModalContent>
+					<ModalHeader>Become a Creator</ModalHeader>
+					<ModalCloseButton />
+					<ModalBody>
+						<HStack spacing={'5'} align="center">
+							<div>
+								<input
+									ref={filePickerRef}
+									type="file"
+									hidden
+									onChange={addImageToPost}
+								/>
+							</div>
+
+							{selectedFile ? (
+								<div
+									style={{
+										alignItems: 'center',
+										objectFit: 'center',
+									}}
+								>
+									<Img
+										src={selectedFile}
+										onClick={() => setSelectedFile(null)}
+										style={{
+											borderRadius: '50%',
+											objectFit: 'center',
+											height: '7rem',
+											width: '7rem',
+											border: '1px solid #808080',
+										}}
+									/>
+								</div>
+							) : (
+								<>
+									<div
+										onClick={() =>
+											filePickerRef.current.click()
+										}
+										style={{
+											height: '7rem',
+											width: '7rem',
+											border: '1px solid #808080',
+											alignSelf: 'center',
+											paddingTop: '2rem',
+											paddingLeft: '2rem',
+											borderRadius: '50%',
+											marginLeft: '1rem',
+										}}
+									>
+										<BsCameraFill size={48} />
+									</div>
+								</>
+							)}
+						</HStack>
+						<div
+							style={{
+								// marginLeft: '1rem',
+								display: 'flex',
+								flexDirection: 'column',
+								width: '100%',
+							}}
+						>
+							<Textarea
+								type="text"
+								placeholder="Creator Name"
+								ref={titleRef}
+								style={{
+									fontSize: '1.5rem',
+									marginBottom: '.5rem',
+									marginTop: '1rem',
+									paddingLeft: '1rem',
+								}}
+							/>
+							<Textarea
+								type="text"
+								placeholder="Tell us something about your page"
+								ref={descriptionRef}
+								style={{
+									fontSize: '1rem',
+
+									marginTop: '.3rem',
+									marginBottom: '1rem',
+									paddingLeft: '1rem',
+								}}
+							/>
+						</div>
+						<Button
+							colorScheme="purple"
+							onClick={() => uploadCreator()}
+							style={{ justifyContent: 'flex-end' }}
+							isLoading={loading}
+							loadingText="Creating..."
+						>
+							Create
+						</Button>
+					</ModalBody>
+				</ModalContent>
+			</Modal>
+
 			<Modal
 				isCentered
 				onClose={onClosePublish}
@@ -235,7 +418,7 @@ const SidebarContent = ({
 					'gray.200',
 					'gray.700',
 				)}
-				w={{ base: '50%', md: 60 }}
+				w={{ base: '100%', md: 60 }}
 				pos="fixed"
 				h="full"
 				{...rest}
@@ -277,16 +460,29 @@ const SidebarContent = ({
 					</>
 				))}
 				<div>
-					<Button
-						style={{
-							marginLeft: '2rem',
-							marginTop: '1rem',
-						}}
-						colorScheme="purple"
-						onClick={onOpenPublish}
-					>
-						New Post
-					</Button>
+					{user && !user.creator ? (
+						<Button
+							style={{
+								marginLeft: '2rem',
+								marginTop: '1rem',
+							}}
+							colorScheme="purple"
+							onClick={onOpenCreator}
+						>
+							Become a creator
+						</Button>
+					) : (
+						<Button
+							style={{
+								marginLeft: '2rem',
+								marginTop: '1rem',
+							}}
+							colorScheme="purple"
+							onClick={onOpenPublish}
+						>
+							New Post
+						</Button>
+					)}
 				</div>
 			</Box>
 		</>
@@ -394,15 +590,15 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 						fontFamily="Open Sans"
 						fontWeight="bold"
 					>
-						Inbox
+						Home
 					</Text>
 
 					<Text
 						display={{ base: 'flex', md: 'none' }}
 						fontSize="md"
 						fontFamily="Open Sans"
-						fontWeight="bold"
-						ml={'14'}
+						fontWeight="bolder"
+						ml={'4'}
 					>
 						Strides Connect
 					</Text>

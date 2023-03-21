@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { domToReact } from 'html-react-parser';
 import { Fragment } from 'react';
-import { ArrowUpIcon } from '@chakra-ui/icons';
+
 
 import { db, storage } from 'lib/firebase';
-import { uuidv4 } from '@firebase/util';
 import {
 	addDoc,
 	collection,
@@ -100,6 +99,14 @@ const options = {
 		if (attribs.h1) {
 			return (
 				<span style={{ color: 'black' }}>
+					{domToReact(children, options)}
+				</span>
+			);
+		}
+
+		if (attribs.a) {
+			return (
+				<span style={{ color: 'blue' }}>
 					{domToReact(children, options)}
 				</span>
 			);
@@ -355,7 +362,9 @@ function Create() {
 					modules={modules}
 					formats={formats}
 					placeholder="Write your ideas here..."
+					options={options}
 				/>
+
 				<div
 					style={{
 						display: 'flex',

@@ -10,7 +10,7 @@ export default function Header({ post }) {
 	const { uid, date, tag } = post;
 	const { user, isLoading } = useUser(tag);
 
-	if (!isLoading)
+	if (user && !isLoading)
 		return (
 			<div
 				style={{
@@ -31,9 +31,15 @@ export default function Header({ post }) {
 				>
 					<Avatar user={user} size="xs" />
 					<div>
-						<Text ml={'1'} fontSize={'xs'}>
-							{user.username}
-						</Text>
+						{user && user.creatorName !== user.username ? (
+							<Text ml={'1'} fontSize={'xs'}>
+								{user.creatorName}
+							</Text>
+						) : (
+							<Text ml={'1'} fontSize={'xs'}>
+								{user.username}
+							</Text>
+						)}
 					</div>
 				</Link>
 				<div>
