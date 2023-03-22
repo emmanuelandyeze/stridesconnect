@@ -50,18 +50,18 @@ export default function Article() {
 					<Box>
 						<Box>
 							<Text
-								fontSize={{ base: 'lg', md: '2xl' }}
+								fontSize={{ base: '25px', md: '2xl' }}
 								fontWeight={'bold'}
 								style={{
 									paddingTop: '1rem',
 								}}
 								fontFamily="Open Sans"
+								color="gray.800"
 							>
 								{post.title}
 							</Text>
 							<Text
-								fontSize={{ base: 'xs', md: 'lg' }}
-								fontStyle={'italic'}
+								fontSize={{ base: '14px', md: 'lg' }}
 								fontFamily="Open Sans"
 								style={{
 									paddingBottom: '1rem',
@@ -130,9 +130,9 @@ export default function Article() {
 							<Box pt={'1.5'}>
 								<Text
 									pb="24"
-									lineHeight={'2'}
+									lineHeight={'1.7'}
 									fontFamily="Open Sans"
-									fontSize={{ base: 'sm', md: 'md' }}
+									fontSize={{ base: '16px', md: 'md' }}
 								>
 									{parse(post.body)}
 								</Text>

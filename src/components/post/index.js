@@ -72,9 +72,10 @@ export default function Post({ post }) {
 						>
 							<div>
 								<Text
-									fontSize={{ base: 'md', md: 'lg' }}
+									fontSize={{ base: '20px', md: 'lg' }}
 									fontWeight={'bold'}
 									style={{ fontFamily: 'Open Sans' }}
+									color="gray.700"
 								>
 									{title}
 								</Text>
@@ -92,8 +93,8 @@ export default function Post({ post }) {
 								src={image}
 								display={{ base: 'block', md: 'none' }}
 								style={{
-									height: '5rem',
-									width: '5rem',
+									height: '6rem',
+									width: '6rem',
 									objectFit: 'cover',
 									marginLeft: '1rem',
 									borderRadius: '5px',
@@ -121,7 +122,7 @@ export default function Post({ post }) {
 								alignItems: 'center',
 							}}
 						>
-							<Tag>{niche}</Tag>
+							<Tag color="gray.700">{niche}</Tag>
 
 							<IconButton
 								size="lg"
