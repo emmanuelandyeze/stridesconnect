@@ -116,8 +116,7 @@ export default function Home() {
 					</DrawerContent>
 				</Drawer>
 				<Flex
-					pl={{ base: '8', md: '20' }}
-					pr={{ base: '5', md: '24' }}
+					px={{ base: '5', md: '24' }}
 					style={{ backgroundColor: '#fff' }}
 					alignItems={'center'}
 					justifyContent={'space-between'}
@@ -222,8 +221,8 @@ export default function Home() {
 				>
 					<VStack
 						style={{ color: '#0A0D12' }}
-						pl={{ base: '8', md: '24' }}
-						pr={{ base: '5', md: '24' }}
+						// pl={{ base: '8', md: '24' }}
+						px={{ base: '5', md: '24' }}
 						pt={{ base: '14px', md: '36' }}
 						width={{ base: '100%', md: '50%' }}
 						align={'left'}
