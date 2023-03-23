@@ -197,7 +197,7 @@ export default function Home() {
 								color: '#FF735C',
 								border: '1px solid #FF735C',
 							}}
-							size={{ base: 'lg', md: 'lg' }}
+							size={{ base: 'md', md: 'lg' }}
 						>
 							Sign up
 						</Button>
@@ -208,7 +208,7 @@ export default function Home() {
 							variant="outline"
 							ml={'2'}
 							display={{ base: 'block', md: 'none' }}
-							size={{ base: 'lg', md: 'lg' }}
+							size={{ base: 'md', md: 'lg' }}
 						>
 							<HamburgerIcon style={{ color: '#0A0D12' }} />
 						</Button>
